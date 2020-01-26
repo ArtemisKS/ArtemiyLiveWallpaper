@@ -1,0 +1,8 @@
+${PODS_ROOT}/Target Support Files/Pods-ArtemiyLiveWallpapers/Pods-ArtemiyLiveWallpapers-frameworks.sh
+${BUILT_PRODUCTS_DIR}/GIFGenerator/GIFGenerator.framework
+${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework
+${BUILT_PRODUCTS_DIR}/PryntTrimmerView/PryntTrimmerView.framework
+${BUILT_PRODUCTS_DIR}/SKPhotoBrowser/SKPhotoBrowser.framework
+${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework
+${BUILT_PRODUCTS_DIR}/TLPhotoPicker/TLPhotoPicker.framework
+${BUILT_PRODUCTS_DIR}/collection-view-layouts/collection_view_layouts.framework

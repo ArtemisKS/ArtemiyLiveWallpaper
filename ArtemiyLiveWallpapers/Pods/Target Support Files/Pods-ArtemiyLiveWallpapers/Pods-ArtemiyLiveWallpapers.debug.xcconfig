@@ -1,0 +1,12 @@
+ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/GIFGenerator" "${PODS_CONFIGURATION_BUILD_DIR}/NVActivityIndicatorView" "${PODS_CONFIGURATION_BUILD_DIR}/PryntTrimmerView" "${PODS_CONFIGURATION_BUILD_DIR}/SKPhotoBrowser" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftMessages" "${PODS_CONFIGURATION_BUILD_DIR}/TLPhotoPicker" "${PODS_CONFIGURATION_BUILD_DIR}/collection-view-layouts"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/GIFGenerator/GIFGenerator.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/PryntTrimmerView/PryntTrimmerView.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SKPhotoBrowser/SKPhotoBrowser.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftMessages/SwiftMessages.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/TLPhotoPicker/TLPhotoPicker.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/collection-view-layouts/collection_view_layouts.framework/Headers"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_LDFLAGS = $(inherited) -framework "GIFGenerator" -framework "ImageIO" -framework "MobileCoreServices" -framework "NVActivityIndicatorView" -framework "PryntTrimmerView" -framework "QuartzCore" -framework "SKPhotoBrowser" -framework "SwiftMessages" -framework "TLPhotoPicker" -framework "UIKit" -framework "collection_view_layouts"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods
+USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES

@@ -1,0 +1,67 @@
+PODS:
+  - collection-view-layouts (0.2.2):
+    - collection-view-layouts/Core (= 0.2.2)
+    - collection-view-layouts/FacebookLayout (= 0.2.2)
+    - collection-view-layouts/FlickrLayout (= 0.2.2)
+    - collection-view-layouts/FlipboardLayout (= 0.2.2)
+    - collection-view-layouts/InstagramLayout (= 0.2.2)
+    - collection-view-layouts/PinterestLayout (= 0.2.2)
+    - collection-view-layouts/Px500Layout (= 0.2.2)
+    - collection-view-layouts/TagsLayout (= 0.2.2)
+  - collection-view-layouts/Core (0.2.2)
+  - collection-view-layouts/FacebookLayout (0.2.2):
+    - collection-view-layouts/Core
+  - collection-view-layouts/FlickrLayout (0.2.2):
+    - collection-view-layouts/Core
+  - collection-view-layouts/FlipboardLayout (0.2.2):
+    - collection-view-layouts/Core
+  - collection-view-layouts/InstagramLayout (0.2.2):
+    - collection-view-layouts/Core
+  - collection-view-layouts/PinterestLayout (0.2.2):
+    - collection-view-layouts/Core
+  - collection-view-layouts/Px500Layout (0.2.2):
+    - collection-view-layouts/Core
+  - collection-view-layouts/TagsLayout (0.2.2):
+    - collection-view-layouts/Core
+  - GIFGenerator (0.3.0)
+  - NVActivityIndicatorView (4.8.0):
+    - NVActivityIndicatorView/Presenter (= 4.8.0)
+  - NVActivityIndicatorView/Presenter (4.8.0)
+  - PryntTrimmerView (4.0.0)
+  - SKPhotoBrowser (6.1.0)
+  - SwiftMessages (7.0.1):
+    - SwiftMessages/App (= 7.0.1)
+  - SwiftMessages/App (7.0.1)
+  - TLPhotoPicker (2.0.7)
+
+DEPENDENCIES:
+  - collection-view-layouts
+  - GIFGenerator
+  - NVActivityIndicatorView
+  - PryntTrimmerView
+  - SKPhotoBrowser
+  - SwiftMessages
+  - TLPhotoPicker
+
+SPEC REPOS:
+  trunk:
+    - collection-view-layouts
+    - GIFGenerator
+    - NVActivityIndicatorView
+    - PryntTrimmerView
+    - SKPhotoBrowser
+    - SwiftMessages
+    - TLPhotoPicker
+
+SPEC CHECKSUMS:
+  collection-view-layouts: 474ec4cce601a26247737227a97fa6a4eb30213f
+  GIFGenerator: abd0770077d06db09cff015c7cf696fd36d5ad74
+  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  PryntTrimmerView: 67e67573ffd4c073f1308effa66aefd0cfa667a0
+  SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
+  SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
+  TLPhotoPicker: 04e4ef38b31ee51388058c3e1e7bbdbd79614cef
+
+PODFILE CHECKSUM: 7b5edc471f9393763c20e19271e266b332556d6b
+
+COCOAPODS: 1.8.4
