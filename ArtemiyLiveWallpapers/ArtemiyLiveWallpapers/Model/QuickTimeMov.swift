@@ -73,9 +73,10 @@ class QuickTimeMov {
                 print("not found video track")
                 return
             }
-            let (reader, output) = try self.reader(track,
-                                                   settings: [kCVPixelBufferPixelFormatTypeKey as String:
-                                                    NSNumber(value: kCVPixelFormatType_32BGRA as UInt32)])
+            let (reader, output) = try self.reader(
+              track,
+              settings: [kCVPixelBufferPixelFormatTypeKey as String:
+                NSNumber(value: kCVPixelFormatType_32BGRA as UInt32)])
             // --------------------------------------------------
             // writer for mov
             // --------------------------------------------------
@@ -83,8 +84,7 @@ class QuickTimeMov {
             writer.metadata = [metadataFor(assetIdentifier)]
             
             // video track
-            let input = AVAssetWriterInput(mediaType: .video,
-                                           outputSettings: videoSettings(track.naturalSize))
+            let input = AVAssetWriterInput(mediaType: .video, outputSettings: videoSettings(track.naturalSize))
             input.expectsMediaDataInRealTime = true
             input.transform = track.preferredTransform
             writer.add(input)
@@ -106,9 +106,9 @@ class QuickTimeMov {
                 let audioTrack:AVAssetTrack = aAudioAsset.tracks(withMediaType: .audio).first!
                 audioReaderOutput = AVAssetReaderTrackOutput(track: audioTrack, outputSettings: nil)
                 
-                do{
+                do {
                     audioReader = try AVAssetReader(asset: aAudioAsset)
-                }catch{
+                } catch {
                     fatalError("Unable to read Asset: \(error) : ")
                 }
                 //let audioReader:AVAssetReader = AVAssetReader(asset: aAudioAsset, error: &error)
