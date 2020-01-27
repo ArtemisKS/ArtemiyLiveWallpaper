@@ -15,6 +15,8 @@ To get this app up and running, just clone the repository, and open ArtemiyLiveW
 
 ## Preview
 
+![Shot #1](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+
 ![Shot #1](ArtemiyLiveWallpaper/images/LiveFirst1.gif)
 
 ![Shot #2](ArtemiyLiveWallpaper/images/LiveFirst2.gif)
