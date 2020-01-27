@@ -27,10 +27,10 @@ class LoadingView: UIView {
       let loadingView = LoadingView(frame: UIScreen.main.bounds)
       loadingView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.95)
       
-      if let _lastWindow = UIApplication.shared.windows.last {
-        if !_lastWindow.subviews.contains(where: { $0 is LoadingView }) {
-          _lastWindow.endEditing(true)
-          _lastWindow.addSubview(loadingView)
+      if let lastWindow = UIApplication.shared.windows.last {
+        if !lastWindow.subviews.contains(where: { $0 is LoadingView }) {
+          lastWindow.endEditing(true)
+          lastWindow.addSubview(loadingView)
         }
       }
       
@@ -40,11 +40,7 @@ class LoadingView: UIView {
       indicator.center = loadingView.center
       indicator.tintColor = .white
       
-      if UI_USER_INTERFACE_IDIOM() == .pad {
-        indicator.style = .whiteLarge
-      } else {
-        indicator.style = .white
-      }
+      indicator.style = UIDevice.current.userInterfaceIdiom == .pad ? .large : .medium
       indicator.startAnimating()
       loadingView.addSubview(indicator)
     }

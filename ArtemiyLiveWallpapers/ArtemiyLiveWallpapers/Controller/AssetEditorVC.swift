@@ -1,5 +1,5 @@
 //
-//  AssetEditorViewController.swift
+//  AssetEditorVC.swift
 //  ArtemiyLiveWallpapers
 //
 //  Created by Artem Kuprijanets on 1/26/20.
@@ -18,7 +18,7 @@ import GIFGenerator
 import NVActivityIndicatorView
 import SwiftMessages
 
-class AssetEditorViewController: UIViewController, NVActivityIndicatorViewable {
+class AssetEditorVC: UIViewController, NVActivityIndicatorViewable {
   
   var tempUrl: URL?
   var trimmedUrl: URL?
@@ -39,8 +39,6 @@ class AssetEditorViewController: UIViewController, NVActivityIndicatorViewable {
   var player: AVPlayer?
   var playbackTimeCheckerTimer: Timer?
   var trimmerPositionChangedTimer: Timer?
-  
-  
   
   @objc private func makeLivePhoto(){
     print(self.trimmerView.startTime!.seconds)
@@ -67,10 +65,9 @@ class AssetEditorViewController: UIViewController, NVActivityIndicatorViewable {
     makeButton.layer.masksToBounds = true
     makeButton.layer.cornerRadius = 20
     
-    makeButton.setTitle("Create & Download", for: .normal)
+    makeButton.setTitle("Download Live Wallpaper", for: .normal)
     makeButton.titleLabel?.font = UIFont(name: "Billabong", size: 32)
     makeButton.titleLabel?.adjustsFontSizeToFitWidth = true
-    
     
 //    self.view.applyMainAppTheme()
     self.playerView.backgroundColor = #colorLiteral(red: 0.1212944761, green: 0.1292245686, blue: 0.141699791, alpha: 1)
@@ -81,45 +78,16 @@ class AssetEditorViewController: UIViewController, NVActivityIndicatorViewable {
     playButton.addTarget(self, action: #selector(play(_:)), for: .touchUpInside)
     makeButton.addTarget(self, action: #selector(makeLivePhoto), for: .touchUpInside)
     
-    trimmerView.isHidden = true
-    playerView.isHidden = true
-    playButton.isHidden = true
-    makeButton.isHidden = true
+    for case let view? in [trimmerView, playerView, playButton, makeButton] {
+      view.isHidden = true
+    }
     applyLogoInTitleView()
     self.showActivityIndicator()
   }
   
-  
-  func applyLogoInTitleView(){
-    
-    let navController = navigationController!
-    
-    let image = UIImage(named: "ic_LogoColor") //Your logo url here
-    let imageView = UIImageView(image: image)
-    
-    let bannerWidth = navController.navigationBar.frame.size.width
-    let bannerHeight = navController.navigationBar.frame.size.height
-    
-    let bannerX = bannerWidth / 2 - (image?.size.width)! / 2
-    let bannerY = bannerHeight / 2 - (image?.size.height)! / 2
-    
-    print(bannerWidth)
-    print(bannerHeight)
-    
-    imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
-    imageView.contentMode = .scaleAspectFit
-    imageView.layer.masksToBounds = true
-    
-    navigationItem.titleView = imageView
-    
-  }
-  
   @objc func play(_ sender: Any) {
     
-    guard let player = player else {
-      return
-      
-    }
+    guard let player = player else { return }
     
     if !player.isPlaying {
       player.play()
@@ -148,7 +116,7 @@ class AssetEditorViewController: UIViewController, NVActivityIndicatorViewable {
     stopPlaybackTimeChecker()
     playbackTimeCheckerTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self,
                                                     selector:
-      #selector(AssetEditorViewController.onPlaybackTimeChecker), userInfo: nil, repeats: true)
+      #selector(AssetEditorVC.onPlaybackTimeChecker), userInfo: nil, repeats: true)
   }
   
   func stopPlaybackTimeChecker() {
@@ -184,15 +152,29 @@ class AssetEditorViewController: UIViewController, NVActivityIndicatorViewable {
     }
   }
   
+  private func addObserver(for playerItem: AVPlayerItem) {
+    
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(AssetEditorVC.itemDidFinishPlaying(_:)),
+      name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+      object: playerItem)
+  }
+  
+  private func removeObserver() {
+    
+    NotificationCenter.default.removeObserver(
+      self,
+      name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+      object: nil)
+  }
+  
   private func addVideoPlayer(with assetUrl: URL, playerView: UIView) {
     let playerItem = AVPlayerItem(url: assetUrl)
     
     player = AVPlayer(playerItem: playerItem)
     
-    
-    NotificationCenter.default.addObserver(self, selector: #selector(AssetEditorViewController.itemDidFinishPlaying(_:)),
-                                           name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
-    
+    addObserver(for: playerItem)
     let layer: AVPlayerLayer = AVPlayerLayer(player: player)
     layer.backgroundColor = UIColor.clear.cgColor
     layer.frame = CGRect(x: 0, y: 0, width: playerView.frame.width, height: playerView.frame.height)
@@ -209,24 +191,33 @@ class AssetEditorViewController: UIViewController, NVActivityIndicatorViewable {
     }
   }
   
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    
+    removeObserver()
+  }
+  
   override func viewDidAppear(_ animated: Bool) {
-    DispatchQueue.main.async {
-      self.trimmerView.delegate = self
+    super.viewDidAppear(animated)
+    
+    if trimmerView.delegate == nil {
+      trimmerView.delegate = self
+      
       if !self.isPhotoAssetSelected{
         
-        self.perform(#selector(self.unlockLoadingView), with: nil, afterDelay: 1.5)
+        self.perform(
+          #selector(self.unlockLoadingView),
+          with: nil,
+          afterDelay: 1.5)
         guard let selectionType = self.selectionType else { return }
         switch selectionType {
         case .gif: self.createVideoAndSetupSlider()
         case .images: self.trimmerView.isHidden = true
         case .video: self.playVideoAndSetupSlider()
         }
-      }else{
-        self.trimmerView.isHidden = true
-        DispatchQueue.main.async {
-          
-        }
-        self.createAndPlayVideoFromPhotosArray()
+      } else {
+        trimmerView.isHidden = true
+        createAndPlayVideoFromPhotosArray()
       }
     }
     
@@ -260,17 +251,26 @@ class AssetEditorViewController: UIViewController, NVActivityIndicatorViewable {
     }
     let gifGenerator = GifGenerator()
     let giftempUrl = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("temp.gif")
-    gifGenerator.generateGifFromImages(imagesArray: frames, frameDelay: 0.5, destinationURL: giftempUrl, callback: { (data, error) -> () in
+    gifGenerator.generateGifFromImages(
+      imagesArray: frames,
+      frameDelay: 0.5,
+      destinationURL: giftempUrl,
+      callback: { (data, error) in
       
-      if error == nil{
+      if error == nil {
         let tempUrl = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("temp.mp4")
         let gifdata = try! Data(contentsOf: giftempUrl)
         GIF2MP4(data: gifdata)?.convertAndExport(to: tempUrl, completion: {
           self.tempUrl = tempUrl
           self.trimmerView.asset = AVAsset(url: tempUrl)
           print(self.trimmerView.asset?.duration ?? -1)
-          self.addVideoPlayer(with: tempUrl, playerView: self.playerView)
-          self.perform(#selector(self.unlockLoadingView), with: nil, afterDelay: 1.5)
+          self.addVideoPlayer(
+            with: tempUrl,
+            playerView: self.playerView)
+          self.perform(
+            #selector(self.unlockLoadingView),
+            with: nil,
+            afterDelay: 1.5)
           self.trimmerView.isHidden = true
         })
       }
@@ -281,11 +281,8 @@ class AssetEditorViewController: UIViewController, NVActivityIndicatorViewable {
   
   @objc func unlockLoadingView(){
         
-    if isPhotoAssetSelected{
-      self.trimmerView.isHidden = true
-    }else{
-      self.trimmerView.isHidden = false
-    }
+    self.trimmerView.isHidden = isPhotoAssetSelected
+    
     UIView.transition(with: playerView, duration: 0.5, options: .curveEaseIn, animations: {
       
       for case let view? in [self.playerView, self.playButton, self.makeButton] {
@@ -317,9 +314,7 @@ class AssetEditorViewController: UIViewController, NVActivityIndicatorViewable {
     guard let selectionType = self.selectionType else { return }
     if selectionType == .gif {
       
-      
       guard let selectedAsset = self.selectedAsset else { return }
-      
       
       selectedAsset.getURL(completionHandler: { (url) in
         guard let url = url else {return }
@@ -335,6 +330,7 @@ class AssetEditorViewController: UIViewController, NVActivityIndicatorViewable {
   }
   
 }
+
 extension AVPlayer {
   
   var isPlaying: Bool {
@@ -342,8 +338,8 @@ extension AVPlayer {
   }
 }
 
-
-extension AssetEditorViewController: TrimmerViewDelegate {
+//MARK: - TrimmerViewDelegate
+extension AssetEditorVC: TrimmerViewDelegate {
   
   func positionBarStoppedMoving(_ playerTime: CMTime) {
     
@@ -360,10 +356,12 @@ extension AssetEditorViewController: TrimmerViewDelegate {
     print(duration)
   }
   
-  func cropVideo(sourceURL: URL, startTime: Double, endTime: Double, completion: ((_ outputUrl: URL) -> Void)? = nil)
-  {
+  func cropVideo(
+    sourceURL: URL,
+    startTime: Double,
+    endTime: Double,
+    completion: ((_ outputUrl: URL) -> Void)? = nil) {
     let fileManager = FileManager.default
-    
     
     let asset = AVAsset(url: sourceURL)
     let length = Float(asset.duration.value) / Float(asset.duration.timescale)
@@ -378,9 +376,10 @@ extension AssetEditorViewController: TrimmerViewDelegate {
     exportSession.outputURL = outputURL
     exportSession.outputFileType = .mp4
     
+    let prefTS: Int32 = 1000
     let timeRange = CMTimeRange(
-      start: CMTime(seconds: startTime, preferredTimescale: 1000),
-      end: CMTime(seconds: endTime, preferredTimescale: 1000))
+      start: CMTime(seconds: startTime, preferredTimescale: prefTS),
+      end: CMTime(seconds: endTime, preferredTimescale: prefTS))
     
     exportSession.timeRange = timeRange
     exportSession.exportAsynchronously {
@@ -409,32 +408,16 @@ extension PHAsset {
   }
 }
 
-extension UIImage{
-  
-  func resizeImageWith(newSize: CGSize) -> UIImage {
-    
-    let horizontalRatio = newSize.width / size.width
-    let verticalRatio = newSize.height / size.height
-    
-    let ratio = max(horizontalRatio, verticalRatio)
-    let newSize = CGSize(width: size.width * ratio, height: size.height * ratio)
-    UIGraphicsBeginImageContextWithOptions(newSize, true, 0)
-    draw(in: CGRect(origin: CGPoint(x: 0, y: 0), size: newSize))
-    let newImage = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
-    return newImage!
-  }
-  
-  
-}
-extension AssetEditorViewController {
+extension AssetEditorVC {
   
   func loadVideoWithVideoURL(_ videoURL: URL) {
-    // livePhotoView.livePhoto = nil
+    
     let asset = AVURLAsset(url: videoURL)
     let generator = AVAssetImageGenerator(asset: asset)
     generator.appliesPreferredTrackTransform = true
-    let time = NSValue(time: CMTimeMakeWithSeconds(CMTimeGetSeconds(asset.duration)/2, preferredTimescale: asset.duration.timescale))
+    let time = NSValue(time: CMTimeMakeWithSeconds(
+      CMTimeGetSeconds(asset.duration),
+      preferredTimescale: asset.duration.timescale))
     generator.generateCGImagesAsynchronously(forTimes: [time]) { [weak self] _, image, _, _, _ in
       if let image = image, let data = UIImage(cgImage: image).pngData() {
         let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -445,18 +428,17 @@ extension AssetEditorViewController {
         let mov = videoURL.path
         let output = FilePaths.VidToLive.livePath
         let assetIdentifier = UUID().uuidString
-        let _ = try? FileManager.default.createDirectory(atPath: output, withIntermediateDirectories: true, attributes: nil)
+        let _ = try? FileManager.default.createDirectory(
+          atPath: output,
+          withIntermediateDirectories: true,
+          attributes: nil)
         do {
           try FileManager.default.removeItem(atPath: output + "/IMG.JPG")
           try FileManager.default.removeItem(atPath: output + "/IMG.MOV")
           
-        } catch {
-          
-        }
-        JPEG(path: image).write(output + "/IMG.JPG",
-                                assetIdentifier: assetIdentifier)
-        QuickTimeMov(path: mov).write(output + "/IMG.MOV",
-                                      assetIdentifier: assetIdentifier)
+        } catch {}
+        JPEG(path: image).write(output + "/IMG.JPG", assetIdentifier: assetIdentifier)
+        QuickTimeMov(path: mov).write(output + "/IMG.MOV", assetIdentifier: assetIdentifier)
         
         _ = DispatchQueue.main.sync {
           PHLivePhoto.request(
@@ -480,14 +462,15 @@ extension AssetEditorViewController {
     }
   }
   
-  
-  
   func exportLivePhoto () {
     PHPhotoLibrary.shared().performChanges({ () -> Void in
       let creationRequest = PHAssetCreationRequest.forAsset()
       let options = PHAssetResourceCreationOptions()
       
-      creationRequest.addResource(with: PHAssetResourceType.pairedVideo, fileURL: URL(fileURLWithPath: FilePaths.VidToLive.livePath + "/IMG.MOV"), options: options)
+      creationRequest.addResource(
+        with: PHAssetResourceType.pairedVideo,
+        fileURL: URL(fileURLWithPath: FilePaths.VidToLive.livePath + "/IMG.MOV"),
+        options: options)
       creationRequest.addResource(
         with: PHAssetResourceType.photo,
         fileURL: URL(fileURLWithPath: FilePaths.VidToLive.livePath + "/IMG.JPG"),
@@ -500,19 +483,16 @@ extension AssetEditorViewController {
         self.navigationController?.popViewController(animated: true)
         SwiftMessages.showToast("LivePhoto is sucessfully downloaded.", type: .success)
       }
-      
       if !success {
         print((error?.localizedDescription)!)
       }
     })
   }
   
-  // Helper function inserted by Swift 4.2 migrator.
   fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
     return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
   }
   
-  // Helper function inserted by Swift 4.2 migrator.
   fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
     return input.rawValue
   }
@@ -520,7 +500,10 @@ extension AssetEditorViewController {
 }
 
 struct FilePaths {
-  static let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(.cachesDirectory,.userDomainMask,true)[0] as AnyObject
+  static let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(
+    .cachesDirectory,
+    .userDomainMask,
+    true).first! as AnyObject
   
   struct VidToLive {
     static var livePath = FilePaths.documentsPath.appending("/")
@@ -535,12 +518,13 @@ extension SwiftMessages {
     
     if let buttonTitle = buttonTitle {
       
-      view.configureContent(title: nil,
-                            body: message,
-                            iconImage: nil,
-                            iconText: nil,
-                            buttonImage: nil,
-                            buttonTitle: buttonTitle, buttonTapHandler: { _ in SwiftMessages.hide() })
+      view.configureContent(
+        title: nil,
+        body: message,
+        iconImage: nil,
+        iconText: nil,
+        buttonImage: nil,
+        buttonTitle: buttonTitle, buttonTapHandler: { _ in SwiftMessages.hide() })
     } else {
       view.configureContent(title: "", body: message)
       view.button?.isHidden = true
@@ -556,7 +540,7 @@ extension SwiftMessages {
     config.dimMode = .gray(interactive: false)
     config.interactiveHide = true
     config.presentationContext = .window(windowLevel: UIWindow.Level.normal)
-    config.duration = .seconds(seconds: type == .warning ? 1.5:3.0)
+    config.duration = .seconds(seconds: type == .warning ? 1.5: 3.0)
     
     SwiftMessages.show(config: config, view: view)
   }
@@ -569,13 +553,8 @@ extension SwiftMessages {
     let view = MessageView.viewFromNib(layout: .messageView)
     
     view.button?.isHidden = true
-    
-    // Theme message elements with the warning style.
     view.configureTheme(.info)
-    
-    // Add a drop shadow.
     view.configureDropShadow()
-    
     view.configureContent(title: title, body: message)
     
     return view

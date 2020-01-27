@@ -203,7 +203,7 @@ class GIF {
         /* Implement as Browsers do: Supports frame delays as low as 0.02 s, with anything below that being rounded up to 0.10 s.
          http://nullsleep.tumblr.com/post/16524517190/animated-gif-minimum-frame-delay-browser-compatibility */
 
-        if (frameDuration < frameDelayThreshold - DBL_EPSILON) {
+      if (frameDuration < frameDelayThreshold - .ulpOfOne) {
             frameDuration = 0.1;
         }
 

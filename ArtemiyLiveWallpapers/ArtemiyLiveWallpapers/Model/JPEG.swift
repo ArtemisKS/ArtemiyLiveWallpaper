@@ -11,6 +11,7 @@ import MobileCoreServices
 import ImageIO
 
 class JPEG {
+  
     fileprivate let kFigAppleMakerNote_AssetIdentifier = "17"
     fileprivate let path : String
 

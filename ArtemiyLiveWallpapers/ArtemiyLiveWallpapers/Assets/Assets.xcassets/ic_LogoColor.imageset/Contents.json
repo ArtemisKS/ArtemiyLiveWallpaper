@@ -2,17 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "teee2.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "teee2-1.png",
+      "filename" : "liveAKlogo.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "teee2-2.png",
+      "filename" : "liveAKlogo-1.png",
       "scale" : "3x"
     }
   ],

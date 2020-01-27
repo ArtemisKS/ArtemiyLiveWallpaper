@@ -11,11 +11,14 @@ import AVFoundation
 import SwiftMessages
 
 class QuickTimeMov {
+  
     fileprivate let kKeyContentIdentifier =  "com.apple.quicktime.content.identifier"
     fileprivate let kKeyStillImageTime = "com.apple.quicktime.still-image-time"
     fileprivate let kKeySpaceQuickTimeMetadata = "mdta"
     fileprivate let path : String
-    fileprivate let dummyTimeRange = CMTimeRangeMake(start: CMTimeMake(value: 0, timescale: 1000), duration: CMTimeMake(value: 200, timescale: 3000))
+    fileprivate let dummyTimeRange = CMTimeRangeMake(
+      start: CMTimeMake(value: 0, timescale: 1000),
+      duration: CMTimeMake(value: 200, timescale: 3000))
 
     fileprivate lazy var asset : AVURLAsset = {
         let url = URL(fileURLWithPath: self.path)
@@ -133,7 +136,7 @@ class QuickTimeMov {
             
             // write video track
             input.requestMediaDataWhenReady(on: DispatchQueue(label: "assetVideoWriterQueue", attributes: [])) {
-                while(input.isReadyForMoreMediaData) {
+                while input.isReadyForMoreMediaData {
                     if reader.status == .reading {
                         if let buffer = output.copyNextSampleBuffer() {
                             if !input.append(buffer) {

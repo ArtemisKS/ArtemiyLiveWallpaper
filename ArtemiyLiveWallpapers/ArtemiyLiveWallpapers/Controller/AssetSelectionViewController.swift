@@ -21,8 +21,7 @@ enum SelectionType {
   case images
 }
 
-class AssetSelectionViewController: UIViewController, TLPhotosPickerViewControllerDelegate, LayoutDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
-  
+class AssetSelectionVC: UIViewController {
   
   @IBOutlet var collectionView: UICollectionView!
   
@@ -38,7 +37,6 @@ class AssetSelectionViewController: UIViewController, TLPhotosPickerViewControll
         self.logoView.isHidden = true
         self.allowPhotoAccesView.isHidden = false
       }
-      
     }
   }
   
@@ -52,9 +50,7 @@ class AssetSelectionViewController: UIViewController, TLPhotosPickerViewControll
     didSet {
       
       if seletedAssetType != .images {
-        
         routeToEditorVC(withVideo: true)
-        
       }
     }
   }
@@ -73,26 +69,11 @@ class AssetSelectionViewController: UIViewController, TLPhotosPickerViewControll
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    UIApplication.shared.keyWindow?.backgroundColor = view.mainColor
+    applyLogoInTitleView()
 //    view.applyMainAppTheme()
-    view.addSubview(logoView)
-    NSLayoutConstraint.activate([
-      
-      logoView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-      logoView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-      logoView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8),
-      logoView.heightAnchor.constraint(equalTo: logoView.widthAnchor)
-      
-    ])
-    
-    self.view.addSubview(allowPhotoAccesView)
-    NSLayoutConstraint.activate([
-      
-      allowPhotoAccesView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-      allowPhotoAccesView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-      allowPhotoAccesView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.85),
-      allowPhotoAccesView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.45)
-    ])
-    
+    // Normally in viewDidLayoutSubviews(), but here OK in viewDidLoad
+    setupViewsConstr()
     allowPhotoAccesView.isHidden = true
     
     confCollectionView()
@@ -114,13 +95,9 @@ class AssetSelectionViewController: UIViewController, TLPhotosPickerViewControll
     return vc
   }()
   
-//  override func viewDidAppear(_ animated: Bool) {
-//
-//  }
-  
   private func setupImages() {
     
-    let imagesCount = 17
+    let imagesCount = 34
     
     for ind in 0..<imagesCount {
       if let image = UIImage(named: "IMG_\(ind)") {
@@ -130,12 +107,33 @@ class AssetSelectionViewController: UIViewController, TLPhotosPickerViewControll
     }
   }
   
+  private func setupViewsConstr() {
+    
+    view.addSubview(logoView)
+    NSLayoutConstraint.activate([
+      
+      logoView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+      logoView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+      logoView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.8),
+      logoView.heightAnchor.constraint(equalTo: logoView.widthAnchor)
+      
+    ])
+    
+    self.view.addSubview(allowPhotoAccesView)
+    NSLayoutConstraint.activate([
+      
+      allowPhotoAccesView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+      allowPhotoAccesView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+      allowPhotoAccesView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.85),
+      allowPhotoAccesView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.45)
+    ])
+  }
+  
   private func confCollectionView() {
     
     let layout: BaseLayout = InstagramLayout()
 
     layout.delegate = self
-//    layout.contentPadding = ItemsPadding(horizontal: 10, vertical: 10)
     layout.cellsPadding = ItemsPadding(horizontal: 2, vertical: 2)
 
     collectionView.collectionViewLayout = layout
@@ -170,43 +168,10 @@ class AssetSelectionViewController: UIViewController, TLPhotosPickerViewControll
     
   }
   
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
-    let ind = indexPath.row
-    if let cell = collectionView.cellForItem(at: indexPath) {
-      
-      let image = images[ind]
-      let browser = SKPhotoBrowser(originImage: image, photos: skImages, animatedFromView: cell)
-      browser.initializePageIndex(indexPath.row)
-      present(browser, animated: true)
-    }
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
-    let cell = collectionView.dequeueReusableCell(
-      withReuseIdentifier: String(describing: PhotoCVC.self),
-      for: indexPath) as! PhotoCVC
-    
-    cell.setCell(image: images[indexPath.row])
-    return cell
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return images.count
-  }
-  
-  func cellSize(indexPath: IndexPath) -> CGSize {
-    return .zero
-//    CGSize(
-//      width: view.frame.width / 2,
-//      height: view.frame.height / 3)
-  }
-  
   private func confAssetEditor() -> UIViewController {
     
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    let vc = storyboard.instantiateViewController(withIdentifier: "AssetEditorViewController") as! AssetEditorViewController
+    let vc = storyboard.instantiateViewController(withIdentifier: "AssetEditorViewController") as! AssetEditorVC
     vc.isPhotoAssetSelected = false
     vc.selectedAsset = self.selectedAsset
     vc.selectionType = self.seletedAssetType
@@ -216,7 +181,7 @@ class AssetSelectionViewController: UIViewController, TLPhotosPickerViewControll
   private func confAssetEditorVC(withTLPHAssets assets: [TLPHAsset]) -> UIViewController {
     
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    let vc = storyboard.instantiateViewController(withIdentifier: "AssetEditorViewController") as! AssetEditorViewController
+    let vc = storyboard.instantiateViewController(withIdentifier: "AssetEditorViewController") as! AssetEditorVC
     vc.isPhotoAssetSelected = true
     vc.selectedAsset = nil
     vc.selectionType = .images
@@ -237,25 +202,22 @@ class AssetSelectionViewController: UIViewController, TLPhotosPickerViewControll
     }
   }
   
-  //TLPhotosPickerViewControllerDelegate
+}
+
+//MARK: - TLPhotosPickerViewControllerDelegate
+extension AssetSelectionVC: TLPhotosPickerViewControllerDelegate {
+  
   func dismissPhotoPicker(withTLPHAssets assets: [TLPHAsset]) {
-    // use selected order, fullresolution image
-    //2
+    
     self.selectedPhotoAssets = assets
     routeToEditorVC(withVideo: false, withTLPHAssets: assets)
   }
   
-  func dismissPhotoPicker(withPHAssets: [PHAsset]) {
-    //1
-  }
+  func dismissPhotoPicker(withPHAssets: [PHAsset]) {}
   
-  func photoPickerDidCancel() {
-    
-  }
+  func photoPickerDidCancel() {}
   
-  func dismissComplete() {
-    //3
-  }
+  func dismissComplete() {}
   
   func canSelectAsset(phAsset: PHAsset) -> Bool {
     
@@ -297,40 +259,77 @@ class AssetSelectionViewController: UIViewController, TLPhotosPickerViewControll
     }
     return true
   }
+  
   func didExceedMaximumNumberOfSelection(picker: TLPhotosPickerViewController) {
     SwiftMessages.showToast("Photos Selection Limit is 3.", type: .warning)
   }
+  
   func handleNoAlbumPermissions(picker: TLPhotosPickerViewController) {
+    
     self.isPhotoAcceddAllowed = false
     self.dismiss(animated: false, completion: nil)
   }
-  func handleNoCameraPermissions(picker: TLPhotosPickerViewController) {
-    
-  }
   
+  func handleNoCameraPermissions(picker: TLPhotosPickerViewController) {}
 }
 
-extension AssetSelectionViewController: TLPhotosPickerLogDelegate{
-  func selectedCameraCell(picker: TLPhotosPickerViewController) {
+//MARK: - UICollectionViewDataSource
+extension AssetSelectionVC: UICollectionViewDataSource {
+  
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
+    let cell = collectionView.dequeueReusableCell(
+      withReuseIdentifier: String(describing: PhotoCVC.self),
+      for: indexPath) as! PhotoCVC
+    
+    cell.setCell(image: images[indexPath.row])
+    return cell
   }
   
-  func deselectedPhoto(picker: TLPhotosPickerViewController, at: Int) {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return images.count
+  }
+}
+
+//MARK: - LayoutDelegate
+extension AssetSelectionVC: LayoutDelegate {
+  
+  func cellSize(indexPath: IndexPath) -> CGSize {
+    return .zero
+  }
+}
+
+//MARK: - UICollectionViewDelegate
+extension AssetSelectionVC: UICollectionViewDelegate {
+  
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
+    let ind = indexPath.row
+    if let cell = collectionView.cellForItem(at: indexPath) {
+      
+      let image = images[ind]
+      let browser = SKPhotoBrowser(originImage: image, photos: skImages, animatedFromView: cell)
+      browser.initializePageIndex(indexPath.row)
+      present(browser, animated: true)
+    }
+  }
+}
+
+//MARK: - TLPhotosPickerLogDelegate
+extension AssetSelectionVC: TLPhotosPickerLogDelegate{
+  
+  func selectedCameraCell(picker: TLPhotosPickerViewController) {}
+  
+  func deselectedPhoto(picker: TLPhotosPickerViewController, at: Int) {
     
     if self.viewController.tempPhotoAssets.count >= 1{
       self.viewController.tempPhotoAssets.removeLast()
     }
-    
   }
   
-  func selectedPhoto(picker: TLPhotosPickerViewController, at: Int) {
-    
-  }
+  func selectedPhoto(picker: TLPhotosPickerViewController, at: Int) {}
   
-  func selectedAlbum(picker: TLPhotosPickerViewController, title: String, at: Int) {
-    
-  }
+  func selectedAlbum(picker: TLPhotosPickerViewController, title: String, at: Int) {}
   
   
 }
@@ -365,11 +364,11 @@ extension PHAsset {
 
 class CustomPhotoPickerViewController: TLPhotosPickerViewController {
   
-  
   var isFirstLoaded = false
   var tempPhotoAssets = [PHAsset]()
   
   override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
     
     if isFirstLoaded {
       self.selectedAssets =  [TLPHAsset]()
@@ -377,7 +376,6 @@ class CustomPhotoPickerViewController: TLPhotosPickerViewController {
       self.collectionView.reloadData()
       
     }
-    super.viewWillAppear(true)
     self.isFirstLoaded = true
   }
   
@@ -391,45 +389,19 @@ class CustomPhotoPickerViewController: TLPhotosPickerViewController {
     self.customNavItem.leftBarButtonItem?.isEnabled = false
     applyLogoInTitleView()
   }
+  
   @objc func handleNextButtonTapped() {
     
-    if self.selectedAssets.count == 0 {
-      return
-    }
+    if selectedAssets.isEmpty { return }
     DispatchQueue.main.async {
       self.delegate!.dismissPhotoPicker(withTLPHAssets: self.selectedAssets)
     }
     
   }
   
-  func applyLogoInTitleView(){
-    
-    let navController = navigationController!
-    
-    let image = UIImage(named: "ic_LogoColor") //Your logo url here
-    let imageView = UIImageView(image: image)
-    
-    let bannerWidth = navController.navigationBar.frame.size.width
-    let bannerHeight = navController.navigationBar.frame.size.height
-    
-    let bannerX = bannerWidth / 2 - (image?.size.width)! / 2
-    let bannerY = bannerHeight / 2 - (image?.size.height)! / 2
-    
-    print(bannerWidth)
-    print(bannerHeight)
-    
-    imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
-    imageView.contentMode = .scaleAspectFit
-    imageView.layer.masksToBounds = true
-    
-    navigationItem.titleView = imageView
-    
-  }
-  
 }
 
 class AllowLibraryAccessView: UIView {
-  
   
   lazy var topLable: UILabel = {
     let label = UILabel()

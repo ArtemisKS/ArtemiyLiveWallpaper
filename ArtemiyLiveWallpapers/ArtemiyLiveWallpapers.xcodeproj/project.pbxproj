@@ -12,8 +12,8 @@
 		7DF9280B23DDD4800046039F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9280923DDD4800046039F /* Main.storyboard */; };
 		7DF9280D23DDD4840046039F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9280C23DDD4840046039F /* Assets.xcassets */; };
 		7DF9281023DDD4840046039F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9280E23DDD4840046039F /* LaunchScreen.storyboard */; };
-		7DF9281823DDE78F0046039F /* AssetEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9281723DDE78F0046039F /* AssetEditorViewController.swift */; };
-		7DF9281A23DDE9E80046039F /* AssetSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9281923DDE9E80046039F /* AssetSelectionViewController.swift */; };
+		7DF9281823DDE78F0046039F /* AssetEditorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9281723DDE78F0046039F /* AssetEditorVC.swift */; };
+		7DF9281A23DDE9E80046039F /* AssetSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9281923DDE9E80046039F /* AssetSelectionVC.swift */; };
 		7DF9281C23DDEA6E0046039F /* GIF2MP4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9281B23DDEA6E0046039F /* GIF2MP4.swift */; };
 		7DF9281E23DDEAEA0046039F /* JPEG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9281D23DDEAEA0046039F /* JPEG.swift */; };
 		7DF9282023DDEB200046039F /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9281F23DDEB200046039F /* LaunchScreenViewController.swift */; };
@@ -23,6 +23,7 @@
 		7DF9283023DE07050046039F /* PhotoCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9282F23DE07050046039F /* PhotoCVC.swift */; };
 		7DF9283423DE2A6B0046039F /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9283323DE2A6B0046039F /* UIApplication.swift */; };
 		7DF9283623DE30610046039F /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9283523DE30610046039F /* UIViewController.swift */; };
+		7DF9283823DE5F060046039F /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9283723DE5F060046039F /* UIView.swift */; };
 		B37862AEF97A70389411B765 /* Pods_ArtemiyLiveWallpapers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE5BA5D8D214234052AE9B47 /* Pods_ArtemiyLiveWallpapers.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,8 +37,8 @@
 		7DF9280C23DDD4840046039F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7DF9280F23DDD4840046039F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7DF9281123DDD4840046039F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7DF9281723DDE78F0046039F /* AssetEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetEditorViewController.swift; sourceTree = "<group>"; };
-		7DF9281923DDE9E80046039F /* AssetSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetSelectionViewController.swift; sourceTree = "<group>"; };
+		7DF9281723DDE78F0046039F /* AssetEditorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetEditorVC.swift; sourceTree = "<group>"; };
+		7DF9281923DDE9E80046039F /* AssetSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetSelectionVC.swift; sourceTree = "<group>"; };
 		7DF9281B23DDEA6E0046039F /* GIF2MP4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIF2MP4.swift; sourceTree = "<group>"; };
 		7DF9281D23DDEAEA0046039F /* JPEG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPEG.swift; sourceTree = "<group>"; };
 		7DF9281F23DDEB200046039F /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +48,7 @@
 		7DF9282F23DE07050046039F /* PhotoCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCVC.swift; sourceTree = "<group>"; };
 		7DF9283323DE2A6B0046039F /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		7DF9283523DE30610046039F /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		7DF9283723DE5F060046039F /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		EE5BA5D8D214234052AE9B47 /* Pods_ArtemiyLiveWallpapers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArtemiyLiveWallpapers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -105,7 +107,6 @@
 				7DF9282723DE04BE0046039F /* Controller */,
 				7DF9282C23DE06800046039F /* Delegates */,
 				7DF9282823DE04C70046039F /* Model */,
-				7DF9282A23DE04FC0046039F /* Service */,
 				7DF9282923DE04D00046039F /* View */,
 			);
 			path = ArtemiyLiveWallpapers;
@@ -114,9 +115,9 @@
 		7DF9282723DE04BE0046039F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7DF9281723DDE78F0046039F /* AssetEditorViewController.swift */,
+				7DF9281723DDE78F0046039F /* AssetEditorVC.swift */,
 				7DF9281F23DDEB200046039F /* LaunchScreenViewController.swift */,
-				7DF9281923DDE9E80046039F /* AssetSelectionViewController.swift */,
+				7DF9281923DDE9E80046039F /* AssetSelectionVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -124,6 +125,7 @@
 		7DF9282823DE04C70046039F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7DF9281B23DDEA6E0046039F /* GIF2MP4.swift */,
 				7DF9282323DDEBD10046039F /* QuickTimeMov.swift */,
 				7DF9281D23DDEAEA0046039F /* JPEG.swift */,
 			);
@@ -139,14 +141,6 @@
 				7DF9282F23DE07050046039F /* PhotoCVC.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		7DF9282A23DE04FC0046039F /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				7DF9281B23DDEA6E0046039F /* GIF2MP4.swift */,
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		7DF9282B23DE05190046039F /* Assets */ = {
@@ -173,6 +167,7 @@
 			children = (
 				7DF9283323DE2A6B0046039F /* UIApplication.swift */,
 				7DF9283523DE30610046039F /* UIViewController.swift */,
+				7DF9283723DE5F060046039F /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -293,15 +288,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DF9283823DE5F060046039F /* UIView.swift in Sources */,
 				7DF9281E23DDEAEA0046039F /* JPEG.swift in Sources */,
 				7DF9282423DDEBD10046039F /* QuickTimeMov.swift in Sources */,
 				7DF9283623DE30610046039F /* UIViewController.swift in Sources */,
-				7DF9281823DDE78F0046039F /* AssetEditorViewController.swift in Sources */,
+				7DF9281823DDE78F0046039F /* AssetEditorVC.swift in Sources */,
 				7DF9283423DE2A6B0046039F /* UIApplication.swift in Sources */,
 				7DF9282023DDEB200046039F /* LaunchScreenViewController.swift in Sources */,
 				7DF9281C23DDEA6E0046039F /* GIF2MP4.swift in Sources */,
 				7DF9280423DDD4800046039F /* AppDelegate.swift in Sources */,
-				7DF9281A23DDE9E80046039F /* AssetSelectionViewController.swift in Sources */,
+				7DF9281A23DDE9E80046039F /* AssetSelectionVC.swift in Sources */,
 				7DF9280623DDD4800046039F /* SceneDelegate.swift in Sources */,
 				7DF9282223DDEB6E0046039F /* LoadingView.swift in Sources */,
 				7DF9283023DE07050046039F /* PhotoCVC.swift in Sources */,
