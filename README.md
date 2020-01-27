@@ -17,21 +17,21 @@ To get this app up and running, just clone the repository, and open ArtemiyLiveW
 
 ![Shot #1](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 
-![Shot #1](ArtemiyLiveWallpaper/images/LiveFirst1.gif)
+![Shot #1](/ArtemiyLiveWallpaper/images/LiveFirst1.gif)
 
-![Shot #2](ArtemiyLiveWallpaper/images/LiveFirst2.gif)
+![Shot #2](/ArtemiyLiveWallpaper/images/LiveFirst2.gif)
 
-![Shot #3](ArtemiyLiveWallpaper/images/LiveFirst3.gif)
+![Shot #3](/ArtemiyLiveWallpaper/images/LiveFirst3.gif)
 
-![Shot #4](ArtemiyLiveWallpaper/images/LiveFirst4.gif)
+![Shot #4](/ArtemiyLiveWallpaper/images/LiveFirst4.gif)
 
-![Shot #5](ArtemiyLiveWallpaper/images/LiveSec1.gif)
+![Shot #5](/ArtemiyLiveWallpaper/images/LiveSec1.gif)
 
-![Shot #6](ArtemiyLiveWallpaper/images/LiveSec21.gif)
+![Shot #6](/ArtemiyLiveWallpaper/images/LiveSec21.gif)
 
-![Shot #7](ArtemiyLiveWallpaper/images/LiveSec3.gif)
+![Shot #7](/ArtemiyLiveWallpaper/images/LiveSec3.gif)
 
-![Shot #8](ArtemiyLiveWallpaper/images/LiveSec31.gif)
+![Shot #8](/ArtemiyLiveWallpaper/images/LiveSec31.gif)
 
 ---
 
