@@ -59,7 +59,6 @@ class AssetEditorVC: UIViewController, NVActivityIndicatorViewable {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     self.navigationController?.navigationBar.isHidden = false
     
     makeButton.layer.masksToBounds = true
@@ -73,7 +72,7 @@ class AssetEditorVC: UIViewController, NVActivityIndicatorViewable {
     self.playerView.backgroundColor = #colorLiteral(red: 0.1212944761, green: 0.1292245686, blue: 0.141699791, alpha: 1)
     trimmerView.handleColor = .white
     trimmerView.mainColor = #colorLiteral(red: 0.6935398579, green: 0.1595383584, blue: 0.4565044641, alpha: 1)
-    trimmerView.maxDuration = 3
+    trimmerView.maxDuration = 11
     trimmerView.minDuration = 1
     playButton.addTarget(self, action: #selector(play(_:)), for: .touchUpInside)
     makeButton.addTarget(self, action: #selector(makeLivePhoto), for: .touchUpInside)
@@ -114,9 +113,12 @@ class AssetEditorVC: UIViewController, NVActivityIndicatorViewable {
   func startPlaybackTimeChecker() {
     
     stopPlaybackTimeChecker()
-    playbackTimeCheckerTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self,
-                                                    selector:
-      #selector(AssetEditorVC.onPlaybackTimeChecker), userInfo: nil, repeats: true)
+    playbackTimeCheckerTimer = Timer.scheduledTimer(
+      timeInterval: 0.1,
+      target: self,
+      selector: #selector(AssetEditorVC.onPlaybackTimeChecker),
+      userInfo: nil,
+      repeats: true)
   }
   
   func stopPlaybackTimeChecker() {

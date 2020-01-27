@@ -21,6 +21,8 @@ enum SelectionType {
   case images
 }
 
+let maxPhotosNum = 7
+
 class AssetSelectionVC: UIViewController {
   
   @IBOutlet var collectionView: UICollectionView!
@@ -89,8 +91,8 @@ class AssetSelectionVC: UIViewController {
     configure.cancelTitle = ""
     configure.allowedAlbumCloudShared = false
     configure.allowedVideoRecording = false
-    configure.maxVideoDuration = 3.0
-    configure.maxSelectedAssets = 3
+    configure.maxVideoDuration = 10.0
+    configure.maxSelectedAssets = maxPhotosNum
     vc.configure = configure
     return vc
   }()
@@ -261,7 +263,7 @@ extension AssetSelectionVC: TLPhotosPickerViewControllerDelegate {
   }
   
   func didExceedMaximumNumberOfSelection(picker: TLPhotosPickerViewController) {
-    SwiftMessages.showToast("Photos Selection Limit is 3.", type: .warning)
+    SwiftMessages.showToast("Photos Selection Limit is \(maxPhotosNum).", type: .warning)
   }
   
   func handleNoAlbumPermissions(picker: TLPhotosPickerViewController) {
