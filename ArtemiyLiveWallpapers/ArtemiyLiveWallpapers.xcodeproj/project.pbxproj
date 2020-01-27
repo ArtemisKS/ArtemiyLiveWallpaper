@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D0921D823DE8D5900AE719F /* AssetSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0921D723DE8D5900AE719F /* AssetSelectionVC.swift */; };
 		7DF9280423DDD4800046039F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9280323DDD4800046039F /* AppDelegate.swift */; };
 		7DF9280623DDD4800046039F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9280523DDD4800046039F /* SceneDelegate.swift */; };
 		7DF9280B23DDD4800046039F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9280923DDD4800046039F /* Main.storyboard */; };
 		7DF9280D23DDD4840046039F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9280C23DDD4840046039F /* Assets.xcassets */; };
 		7DF9281023DDD4840046039F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF9280E23DDD4840046039F /* LaunchScreen.storyboard */; };
 		7DF9281823DDE78F0046039F /* AssetEditorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9281723DDE78F0046039F /* AssetEditorVC.swift */; };
-		7DF9281A23DDE9E80046039F /* AssetSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9281923DDE9E80046039F /* AssetSelectionVC.swift */; };
 		7DF9281C23DDEA6E0046039F /* GIF2MP4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9281B23DDEA6E0046039F /* GIF2MP4.swift */; };
 		7DF9281E23DDEAEA0046039F /* JPEG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9281D23DDEAEA0046039F /* JPEG.swift */; };
 		7DF9282023DDEB200046039F /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9281F23DDEB200046039F /* LaunchScreenViewController.swift */; };
@@ -30,6 +30,7 @@
 /* Begin PBXFileReference section */
 		22F844558D08DA58EB4F94F8 /* Pods-ArtemiyLiveWallpapers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtemiyLiveWallpapers.release.xcconfig"; path = "Target Support Files/Pods-ArtemiyLiveWallpapers/Pods-ArtemiyLiveWallpapers.release.xcconfig"; sourceTree = "<group>"; };
 		393031B93A99D78AEDA82FA3 /* Pods-ArtemiyLiveWallpapers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArtemiyLiveWallpapers.debug.xcconfig"; path = "Target Support Files/Pods-ArtemiyLiveWallpapers/Pods-ArtemiyLiveWallpapers.debug.xcconfig"; sourceTree = "<group>"; };
+		7D0921D723DE8D5900AE719F /* AssetSelectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetSelectionVC.swift; sourceTree = "<group>"; };
 		7DF9280023DDD4800046039F /* ArtemiyLiveWallpapers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtemiyLiveWallpapers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DF9280323DDD4800046039F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DF9280523DDD4800046039F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,7 +39,6 @@
 		7DF9280F23DDD4840046039F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7DF9281123DDD4840046039F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7DF9281723DDE78F0046039F /* AssetEditorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetEditorVC.swift; sourceTree = "<group>"; };
-		7DF9281923DDE9E80046039F /* AssetSelectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetSelectionVC.swift; sourceTree = "<group>"; };
 		7DF9281B23DDEA6E0046039F /* GIF2MP4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIF2MP4.swift; sourceTree = "<group>"; };
 		7DF9281D23DDEAEA0046039F /* JPEG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPEG.swift; sourceTree = "<group>"; };
 		7DF9281F23DDEB200046039F /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
@@ -115,9 +115,9 @@
 		7DF9282723DE04BE0046039F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7D0921D723DE8D5900AE719F /* AssetSelectionVC.swift */,
 				7DF9281723DDE78F0046039F /* AssetEditorVC.swift */,
 				7DF9281F23DDEB200046039F /* LaunchScreenViewController.swift */,
-				7DF9281923DDE9E80046039F /* AssetSelectionVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -296,8 +296,8 @@
 				7DF9283423DE2A6B0046039F /* UIApplication.swift in Sources */,
 				7DF9282023DDEB200046039F /* LaunchScreenViewController.swift in Sources */,
 				7DF9281C23DDEA6E0046039F /* GIF2MP4.swift in Sources */,
+				7D0921D823DE8D5900AE719F /* AssetSelectionVC.swift in Sources */,
 				7DF9280423DDD4800046039F /* AppDelegate.swift in Sources */,
-				7DF9281A23DDE9E80046039F /* AssetSelectionVC.swift in Sources */,
 				7DF9280623DDD4800046039F /* SceneDelegate.swift in Sources */,
 				7DF9282223DDEB6E0046039F /* LoadingView.swift in Sources */,
 				7DF9283023DE07050046039F /* PhotoCVC.swift in Sources */,

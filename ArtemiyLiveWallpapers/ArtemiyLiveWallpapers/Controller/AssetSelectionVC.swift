@@ -70,7 +70,7 @@ class AssetSelectionVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     UIApplication.shared.keyWindow?.backgroundColor = view.mainColor
-    applyLogoInTitleView()
+//    applyLogoInTitleView()
 //    view.applyMainAppTheme()
     // Normally in viewDidLayoutSubviews(), but here OK in viewDidLoad
     setupViewsConstr()
