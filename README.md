@@ -3,7 +3,7 @@ Live Wallpapers app, written in swift
 
 ## ```ArtemiyLiveWallpaper``` is a live wallpaper app.
 It lets you create your own live wallpapers! Restriction of composing elements are:
-Not more than 7 photos or a video not longer than 10 seconds
+not more than 7 photos or a video not longer than 10 seconds
 
 ---
 
