@@ -15,15 +15,6 @@ To get this app up and running, just clone the repository, and open ArtemiyLiveW
 
 ## Preview
 
- 
- LiveFirst2.gif
- LiveFirst3.gif
- LiveFirst4.gif
- LiveSec1.gif
- LiveSec21.gif
- LiveSec3.gif
- LiveSec31.gif
-
 ![Shot #1](ArtemiyLiveWallpaper/images/LiveFirst1.gif)
 
 ![Shot #2](ArtemiyLiveWallpaper/images/LiveFirst2.gif)
