@@ -15,8 +15,6 @@ To get this app up and running, just clone the repository, and open ArtemiyLiveW
 
 ## Preview
 
-![Shot #1]<img src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif" width="40" height="40" />
-
 ![Shot #1](/ArtemiyLiveWallpapers/images/LiveFirst1.gif)
 
 ![Shot #2](/ArtemiyLiveWallpapers/images/LiveFirst2.gif)
@@ -32,6 +30,8 @@ To get this app up and running, just clone the repository, and open ArtemiyLiveW
 ![Shot #7](/ArtemiyLiveWallpapers/images/LiveSec3.gif)
 
 ![Shot #8](/ArtemiyLiveWallpapers/images/LiveSec31.gif)
+
+(https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 
 ---
 
