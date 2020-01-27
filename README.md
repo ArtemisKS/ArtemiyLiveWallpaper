@@ -31,7 +31,7 @@ To get this app up and running, just clone the repository, and open ArtemiyLiveW
 
 ![Shot #8](/ArtemiyLiveWallpapers/images/LiveSec31.gif)
 
-(https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Catty](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 
 ---
 
